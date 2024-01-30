@@ -1,5 +1,5 @@
 """
-1(b) Memoization optimization
+1(c) Memoization optimization
 """
 
 import sys

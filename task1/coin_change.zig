@@ -1,10 +1,29 @@
 const std = @import("std");
 const expect = std.testing.expect;
 
+pub fn main() !void {
+    var n: [100]u8 = undefined;
+    var a: [100]u8 = undefined;
+    var b: [100]u8 = undefined;
+    var c: [100]u8 = undefined;
+    const stdin = std.io.getStdIn().reader();
+    const stdout = std.io.getStdOut().writer();
+
+    _ = try stdin.readUntilDelimiter(&n, '\n');
+    _ = try stdin.readUntilDelimiter(&a, '\n');
+    _ = try stdin.readUntilDelimiter(&b, '\n');
+    _ = try stdin.readUntilDelimiter(&c, '\n');
+
+    try stdout.print("The user entered: {s}\n", .{n});
+    try stdout.print("The user entered: {s}\n", .{a});
+    try stdout.print("The user entered: {s}\n", .{b});
+    try stdout.print("The user entered: {s}\n", .{c});
+}
+
 pub fn coins(n: i64, a: i64, b: i64, c: i64) i64 {
-    if (n < 0) return -1;
+    if (n < 0) return @as(i64, @bitCast(std.math.inf(f64)));
     if (n == 0) return 0;
-    return min(n, 1 + coins(n - a), 1 + coins(n - b), 1 + coins(n - c));
+    return min(n, 1 + coins(n - a, a,b,c), 1 + coins(n - b, a,b,c), 1 + coins(n - c, a,b,c));
 }
 
 fn min(a: i64, b: i64, c: i64, d: i64) i64 {
@@ -31,7 +50,7 @@ test "coin change 2" {
     try expect(tmp == 2);
 }
 
-test "coin change output 3" {
+test "coin change 3" {
     const tmp = coins(0, 10, 100, 1000);
     try expect(tmp == 0);
 }
