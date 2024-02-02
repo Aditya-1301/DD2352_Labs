@@ -1,6 +1,6 @@
 import sys
 
-n, p, k, map = None, None, None, {}
+n, p, k, cache = None, None, None, {}
 
 
 def g(x):
@@ -8,12 +8,11 @@ def g(x):
         return 0.0
     if x == k:
         return p**k
-    if x in map:
-        return map[x]
+    if x in cache:
+        return cache[x]
     result = g(x-1) + (p**k)*(1-p)*(1-g(x-k-1))
-    map[x] = result
+    cache[x] = result
     return result
-
 
 
 if __name__ == "__main__":
@@ -22,10 +21,3 @@ if __name__ == "__main__":
     k = int(input())
     p = float(input())
     print(g(n))
-
-
-# if (x, y) in map:
-#     return map[(x, y)]
-# result = p * f(x - 1, y - 1) + (1 - p) * f(x - 1, k)
-# map[(x, y)] = result
-# return result

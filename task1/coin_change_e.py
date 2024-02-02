@@ -1,7 +1,9 @@
 import sys
 
+
 def min_coin(c, s, g, p):
     return min(min(c, s), min(g, p))
+
 
 def coin_change(n, a, b, c):
     dp = [0] * (n + 1)  # Initialize an array to store results for all amounts from 0 to n
@@ -11,6 +13,7 @@ def coin_change(n, a, b, c):
                          dp[i - c] if i - c >= 0 else float('inf'),
                          float('inf')) + 1
     return dp[n]
+
 
 if __name__ == "__main__":
     sys.setrecursionlimit(10000)

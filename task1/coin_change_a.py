@@ -19,6 +19,3 @@ if __name__ == "__main__":
     b = int(input())
     c = int(input())
     print(coin_change(n, a, b, c))
-    # print(coin_change(10, 2, 3, 4))
-    # print(coin_change(10, 5, 6, 7))
-    # print(coin_change(0, 10, 100, 1000))
