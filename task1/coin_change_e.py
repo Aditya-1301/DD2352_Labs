@@ -6,7 +6,7 @@ def min_coin(c, s, g, p):
 
 
 def coin_change(n, a, b, c):
-    dp = [0] * (n + 1)  # Initialize an array to store results for all amounts from 0 to n
+    dp = [0] * (n + 1) 
     for i in range(1, n + 1):
         dp[i] = min_coin(dp[i - a] if i - a >= 0 else float('inf'),
                          dp[i - b] if i - b >= 0 else float('inf'),
