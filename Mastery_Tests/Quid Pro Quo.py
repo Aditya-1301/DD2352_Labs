@@ -1,68 +1,3 @@
-# def trade(trade_to_char_i, receive_from_char_i, char_num):
-#     print(surp, need)
-#     h[trade_to_char_i] -= 1
-#     r[trade_to_char_i][char_num] += 1
-#     h[receive_from_char_i] += 1
-#     r[receive_from_char_i][char_num] -=1
-#     new_need = [i for i in need if i != receive_from_char_i]
-#     print(trade_to_char_i, h[trade_to_char_i])
-#     if h[trade_to_char_i] == 1:
-#         new_surp = [i for i in surp if h[i] > 1]
-#         print("wtf")
-#         print("new surp:", new_surp, "new need:", new_need)
-#         return (new_surp, new_need)
-#     else:
-#         return (surp, new_need)
-
-
-# def trade_check():
-#     global surp 
-#     global need
-
-#     traded = False
-
-#     while need:
-#         for i in range(n):
-#             for j in range(m):
-#                 for k in range(len(surp)):
-#                     for l in range(len(need)):
-#                         print("l", l)
-#                         print(need)
-#                         print("need[l]:", need[l])
-#                         print("j:", j)
-#                         if h[surp[k]] > 1 and w[surp[k]][j] > r[surp[k]][j] and w[need[l]][j] < r[need[l]][j]:
-#                             (surp, need) = trade(surp[k], need[l], j)
-#                             traded = True
-#                             if not need:
-#                                 return True
-
-#         if not traded:
-#             break
-
-
-#     for i in h:
-#         if i < 1:
-#             return False
-
-#     return True
-
-
-# r = [
-#     [1,  0, 0],
-#     [0, 10, 0],
-#     [1,  0, 0],
-#     [0,  0, 1],
-# ]
-
-# w = [
-#     [3,  0, 0],
-#     [0,  0, 0],
-#     [0, 20, 1],
-#     [0,  0, 0],
-# ]
-
-# h = [15, 1, 2, 0]
-
 # r = [
 #     [1,  0,  0, 0],
 #     [0, 10,  0, 0],
@@ -81,21 +16,89 @@
 #     [0,  0,  0, 0]
 # ]
 
-# h = [15, 1, 0, 0, 2, 1]
-
-# n = len(r)
-
-# m = len(r[0])
-
-# print(n,m)
-
-# need = [i for i, v in enumerate(h) if v < 1]
-# surp = [i for i, v in enumerate(h) if v > 1]
-
-# print(f"Surplus: {surp}, Need: {need}")
+# h = [15, 1, 0, 0, 2, 1] 
 
 
-# print(trade_check())
+r = [
+    [1,  0, 0],
+    [0, 10, 0],
+    [1,  0, 0],
+    [0,  0, 1],
+]
+
+w = [
+    [3,  0, 0],
+    [0,  0, 0],
+    [0, 20, 1],
+    [0,  0, 0],
+]
+
+h = [15, 1, 1, 0]
+
+n = len(r)
+
+m = len(r[0])
+
+print(n,m)
+
+need = [i for i, v in enumerate(h) if v < 1] # [3]
+surp = [i for i, v in enumerate(h) if v > 1] # [0] 
+
+
+def trade(trade_to_char_i, receive_from_char_i, char_num):
+    print(surp, need)
+    h[trade_to_char_i] -= 1
+    r[trade_to_char_i][char_num] += 1
+    h[receive_from_char_i] += 1
+    r[receive_from_char_i][char_num] -=1
+    new_need = [i for i in need if i != receive_from_char_i]
+    print(trade_to_char_i, h[trade_to_char_i])
+    if h[trade_to_char_i] == 1:
+        new_surp = [i for i in surp if h[i] > 1]
+        print("new surp:", new_surp, "new need:", new_need)
+        return (new_surp, new_need)
+    else:
+        return (surp, new_need)
+
+
+def trade_check():
+    global surp 
+    global need
+
+    traded = False
+
+    while need:
+        for j in range(m):
+            for k in range(len(surp)):
+                for l in range(len(need)): 
+                    print("l", l)
+                    print(need)
+                    print("need[l]:", need[l])
+                    print("j:", j)
+                    if h[surp[k]] > 1 and w[surp[k]][j] > r[surp[k]][j] and w[need[l]][j] < r[need[l]][j]:
+                        (surp, need) = trade(surp[k], need[l], j)
+                        traded = True
+                        if not need:
+                            return True
+
+        if not traded:
+            break
+
+
+        for i in h:
+            if i < 1:
+                return False
+
+    return True
+
+
+print(f"Surplus: {surp}, Need: {need}")
+print(trade_check())
+
+print("\n\n\n\n\n")
+
+
+
 
 
 # Transpose inputs r and w 
@@ -117,7 +120,7 @@
 
 
 # sources = [i for i in h if i>1] 
-# sinks = [j for j in h if j<=1]l
+# sinks = [j for j in h if j<=1]
 
 # ---------------------------------------------------------------------------------------
 

@@ -164,7 +164,7 @@ This was my original intuition towards the problem but I soon realized that this
 """
 
 x = [4, 1, 6, 1, 2]
-x = [4, 1, 1, 1, 1]
+# x = [4, 1, 1, 1, 1]
 # x = [1,3]
 # x = [1,2,3,4,5]
 # n = len(x)
